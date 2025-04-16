@@ -1,6 +1,5 @@
 {
-  "name": "packdemo",
-  "private": true,
+  "name": "yePackdemo",
   "workspaces": ["packages/*"],
   "version": "0.0.0",
   "type": "module",
