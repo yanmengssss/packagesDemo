@@ -1,8 +1,8 @@
 {
-  "name": "@ye/button",
+  "name": "ye-button",
   "version": "0.0.1",
   "description": "React 按钮组件库",
-  "main": "lib/index.cjs.js",
+  "main": "lib/index.es.js",
   "module": "lib/index.es.js",
   "types": "lib/index.d.ts",
   "type": "commonjs",
@@ -12,7 +12,7 @@
     "button",
     "component"
   ],
-  "author": "你的名字",
+  "author": "Ye",
   "license": "MIT",
   "repository": {
     "type": "git",
