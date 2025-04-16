@@ -1,6 +1,6 @@
 import React from 'react'
 import module from './index.module.scss'
-interface ButtonProps {
+export interface ButtonProps {
   children?: React.ReactNode
   onClick?: () => void
 }

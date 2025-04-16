@@ -1,7 +1,7 @@
 import React from 'react'
 import module from './index.module.scss'
 
-interface TextProps {
+export interface TextProps {
     children: React.ReactNode
     className?: string
 }

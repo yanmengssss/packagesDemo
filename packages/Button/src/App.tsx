@@ -1,5 +1,5 @@
-import { Button } from './components/Button'
-import { Text } from './components/Texts'
+import { Button } from './components/Button/Button'
+import { Text } from './components/Text/Text'
 import './App.css'
 function App() {
   return (

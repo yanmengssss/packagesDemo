@@ -1,28 +1,60 @@
-import { defineConfig } from 'vite'
+import { defineConfig, loadEnv } from 'vite'
 import react from '@vitejs/plugin-react'
-import path from 'path'
+import { resolve } from 'path'
+import babel from '@rollup/plugin-babel'
+import { libInjectCss, getEsEntries } from './src/utils/index'
 
-export default defineConfig({
-  plugins: [react()],
-  build: {
-    lib: {
-      entry: path.resolve(__dirname, 'src/index.ts'),
-      name: 'MyButton',
-      fileName: (format) => `my-button.${format}.js`,
-    },
-    rollupOptions: {
-      external: ['react', 'react-dom'],
-      output: {
-        globals: {
-          react: 'React',
-          'react-dom': 'ReactDOM',
-        },
+export default ({ mode }) => {
+  // 加载环境变量
+  const env = loadEnv(mode, process.cwd(), '')
+  const isUmd = env.BUILD_MODE === 'umd'
+  
+  console.log('Build mode:', isUmd ? 'UMD' : 'ES')
+  
+  const plugins = [
+    react(),
+    babel({
+      babelHelpers: 'bundled',
+      extensions: ['.js', '.jsx', '.ts', '.tsx'],
+      exclude: 'node_modules/**',
+      configFile: resolve(__dirname, '.babelrc')
+    })]
+  !isUmd && plugins.push(libInjectCss())
+  
+  return defineConfig({
+    plugins,
+    build: {
+      outDir: isUmd ? resolve('libCos') : resolve('lib'),
+      lib: {
+        entry: isUmd ? resolve(__dirname, 'src/index.umd.ts') : getEsEntries(),
+        name: 'MyButton',
+        formats: isUmd ? ['umd'] : ['es', 'cjs'],
+        fileName: (format) => `index.${format}.js`,
+      },
+      rollupOptions: {
+        external: ['react', 'react-dom'],
+        output: {
+          globals: {
+            react: 'React',
+            'react-dom': 'ReactDOM',
+          },
+          exports: 'named'
+        }
       },
     },
-    cssCodeSplit: false, // 禁用 CSS 代码分割
-    cssMinify: true, // 压缩 CSS
-  },
-  server: {
-    open: true
-  }
-})
+    resolve: {
+      alias: {
+        '@': resolve(__dirname, './src')
+      },
+      extensions: ['.js', '.jsx', '.ts', '.tsx']
+    }
+  })
+}
+
+
+
+
+
+
+
+

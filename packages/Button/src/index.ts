@@ -1,4 +1,4 @@
-import { Button } from './components/Button'
-import { Text } from './components/Texts'
+import Button from './components/Button';
+import Text from './components/Text';
 
-export { Button, Text }
+export { Button, Text }; 
