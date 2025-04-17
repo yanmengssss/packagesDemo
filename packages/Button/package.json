@@ -1,22 +1,21 @@
 {
   "name": "ye-button",
-  "version": "0.0.1",
+  "version": "0.0.13",
   "description": "React 按钮组件库",
-  "main": "lib/index.es.js",
-  "module": "lib/index.es.js",
-  "types": "lib/index.d.ts",
-  "type": "commonjs",
+  "main": "lib/index/index.js",
+  "module": "lib/index/index.js",
+  "types": "lib/index.d.ts",  
   "keywords": [
     "ye-ui",
     "react",
-    "button",
-    "component"
+    "yybutton",
+    "yycomponent"
   ],
   "author": "Ye",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/你的用户名/你的仓库名.git"
+    "url": "https://github.com/yanmengssss/packagesDemo.git"
   },
   "files": [
     "lib",
@@ -25,11 +24,11 @@
   ],
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build:vite": "vite build",
     "preview": "vite preview",
     "build:umd": "vite build --mode umd",
-    "build:cos": "yarn build && yarn build:umd",
-    "prepublishOnly": "yarn build:cos"
+    "build": "yarn build:vite && yarn build:umd && copy src\\index.d.ts lib\\index.d.ts", 
+    "prepublishOnly": "yarn build"
   },
   "peerDependencies": {
     "react": ">=16.8.0",
@@ -50,6 +49,7 @@
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "sass": "^1.60.0",
-    "vite": "^4.0.0"
+    "vite": "^4.0.0",
+    "rollup-plugin-visualizer": "^5.12.0"
   }
 }

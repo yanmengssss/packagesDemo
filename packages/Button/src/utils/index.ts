@@ -20,10 +20,8 @@ export function getEsEntries() {
       const [name] = item.split('.')
       ret[name] = itemPath
     }
-    console.log(ret)
     return ret
   }, {})
-  console.log(componentEntries)
   return componentEntries
 }
 // export interface LibOptions extends LibraryOptions {
@@ -47,11 +45,6 @@ export function libInjectCss(libOptions?: any) {
 
       let outputOptions = rollupOptions.output;
       outputOptions = [outputOptions].flat().map(options => ({
-        /**
-         * By default, when creating multiple chunks, transitive imports of entry chunks will be added as empty imports to the entry chunks.
-         * @see https://rollupjs.org/faqs/#why-do-additional-imports-turn-up-in-my-entry-chunks-when-code-splitting
-         * But as a library, this option may cause tree-shaking fails, so we set `false` here as default behavior.
-         */
         hoistTransitiveImports: false,
         ...options,
       }));
@@ -65,15 +58,11 @@ export function libInjectCss(libOptions?: any) {
           ...build,
           lib,
           rollupOptions,
-          /**
-           * Must enable css code split, otherwise there's only one `style.css` and `chunk.viteMetadata.importedCss` will be empty.
-           * @see https://github.com/vitejs/vite/blob/HEAD/packages/vite/src/node/plugins/css.ts#L578-L579
-           */
-          cssCodeSplit: true,
+          cssCodeSplit: false,
         },
       };
     },
-    configResolved({ build }) {
+    configResolved({ build } :any) {
       const messages = [];
       const outputOptions = [build.rollupOptions.output].flat();
 
@@ -90,7 +79,7 @@ export function libInjectCss(libOptions?: any) {
         );
       }
 
-      const createPreserveModulesWarning = (optionPath) => {
+      const createPreserveModulesWarning = (optionPath :any) => {
         messages.push(
           'When `' + optionPath + '` is `true`, ' +
           'the association between chunk file and its css references will lose, ' +
@@ -110,7 +99,7 @@ export function libInjectCss(libOptions?: any) {
 
       messages.forEach(msg => console.log(`\n${color.cyan('[vite:lib-inject-css]:')} ${color.yellow(msg)}\n`));
     },
-    renderChunk(code, chunk) {
+    renderChunk(code :any, chunk:any) {
       if (skipInject || !chunk.viteMetadata) return;
       const { importedCss } = chunk.viteMetadata;
       if (!importedCss.size) return;
@@ -147,9 +136,9 @@ export function libInjectCss(libOptions?: any) {
  * ])
  * ```
  */
-export function scanEntries(entryDirs) {
-  const entries = {};
-  const counter = {};
+export function scanEntries(entryDirs:any) {
+  const entries:any = {};
+  const counter :any = {};
 
   for (const entryDir of [entryDirs].flat()) {
     if (!entryDir) break;

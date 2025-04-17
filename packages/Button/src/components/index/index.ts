@@ -1,10 +1,10 @@
-import { Button } from "../Button/Button";
-import { Text } from "../Text/Text";
+import { YyButton } from "../Yy-Button/YyButton";
+import { YyText } from "../Yy-Text/YyText";
 
 const Ye = {
-    Button,
-    Text,
+    YyButton,
+    YyText,
 }
 
-export { Button, Text }
+export { YyButton, YyText }
 export default Ye

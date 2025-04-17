@@ -9,9 +9,7 @@ public/
 .env.*
 .eslintrc
 .prettierrc
-tsconfig.json
 tsconfig.node.json
-vite.config.ts
 
 # 开发工具
 .vscode/

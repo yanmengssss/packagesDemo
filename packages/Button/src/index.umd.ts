@@ -1,4 +1,7 @@
-import Button from './components/Button'
-import Text from './components/Text'
+import { YyButton } from './components/Yy-Button'
+import { YyText } from './components/Yy-Text'
 
-export { Button, Text } 
+export {
+  YyButton,
+  YyText
+}

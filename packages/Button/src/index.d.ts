@@ -1,14 +1,14 @@
-import { FC, ReactNode } from 'react';
+import { FC } from 'react';
+import type { ButtonProps } from './components/YyButton';
+import type { TextProps } from './components/YyText';
 
-export interface ButtonProps {
-  children?: ReactNode;
-  onClick?: () => void;
-}
+export { ButtonProps, TextProps };
+export const YyButton: FC<ButtonProps>;
+export const YyText: FC<TextProps>;
 
-export interface TextProps {
-  children: ReactNode;
-  className?: string;
-}
+declare const Ye: {
+  YyButton: FC<ButtonProps>;
+  YyText: FC<TextProps>;
+};
 
-export const Button: FC<ButtonProps>;
-export const Text: FC<TextProps>; 
+export default Ye;

@@ -1,4 +1,4 @@
-import Button from './components/Button';
-import Text from './components/Text';
+import './styles/index.scss'
 
-export { Button, Text }; 
+export { YyButton } from './components/Yy-Button/index'
+export { YyText } from './components/Yy-Text/index'
